@@ -1,0 +1,14 @@
+music21==9.5.0
+librosa==0.11.0
+pretty_midi==0.2.9
+matplotlib==3.4.3
+numpy>=1.22.0
+scipy>=1.7.1
+soundfile==0.13.1
+pydub==0.25.1
+basic-pitch>=0.2.6
+spleeter>=2.4.0
+demucs>=4.0.0
+pedalboard>=0.7.6
+pylrc>=0.1.0
+tensorflow>=2.12.0

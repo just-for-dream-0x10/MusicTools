@@ -1,0 +1,84 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual Environment
+venv/
+env/
+ENV/
+
+# IDE files
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+
+# Project specific
+output/*
+!output/.gitkeep
+wav/*
+!wav/.gitkeep
+*.wav
+*.mp3
+*.midi
+*.mid
+*.musicxml
+*.xml
+*.pdf
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# Logs
+logs/
+*.log
+
+# Local configuration
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Temporary files
+temp/
+tmp/
+.temp/
+.tmp/
+
+# Large model files
+*.pt
+*.pth
+*.h5
+*.pkl
+*.model
+*.bin
+
+# Keep specific examples
+!examples/*.wav
+!examples/*.mp3
+!examples/*.midi
+!examples/*.mid
+!examples/*.musicxml
+!examples/*.xml
+!examples/*.pdf

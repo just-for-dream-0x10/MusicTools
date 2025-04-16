@@ -1,0 +1,139 @@
+name: Code Cleanup and Quality Check
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+  
+  workflow_dispatch:
+
+jobs:
+  cleanup-check:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.10'
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+
+    - name: Check for Python cache files
+      id: check_pycache
+      run: |
+        PYCACHE_FILES=$(find . -name "__pycache__" -o -name "*.pyc" -o -name "*.pyo" -o -name "*.pyd")
+        if [ -n "$PYCACHE_FILES" ]; then
+          echo "::set-output name=found::true"
+          echo "Python cache files found:"
+          echo "$PYCACHE_FILES"
+        else
+          echo "::set-output name=found::false"
+          echo "No Python cache files found."
+        fi
+
+    - name: Check for system files
+      id: check_system_files
+      run: |
+        SYSTEM_FILES=$(find . -name ".DS_Store" -o -name "._.DS_Store" -o -name "Thumbs.db")
+        if [ -n "$SYSTEM_FILES" ]; then
+          echo "::set-output name=found::true"
+          echo "System metadata files found:"
+          echo "$SYSTEM_FILES"
+        else
+          echo "::set-output name=found::false"
+          echo "No system metadata files found."
+        fi
+
+    - name: Check for editor temporary files
+      id: check_editor_files
+      run: |
+        EDITOR_FILES=$(find . -name "*~" -o -name "*.swp" -o -name "*.swo" -o -name ".*.sw*")
+        if [ -n "$EDITOR_FILES" ]; then
+          echo "::set-output name=found::true"
+          echo "Editor temporary files found:"
+          echo "$EDITOR_FILES"
+        else
+          echo "::set-output name=found::false"
+          echo "No editor temporary files found."
+        fi
+
+    - name: Check for backup files
+      id: check_backup_files
+      run: |
+        BACKUP_FILES=$(find . -name "*.bak")
+        if [ -n "$BACKUP_FILES" ]; then
+          echo "::set-output name=found::true"
+          echo "Backup files found:"
+          echo "$BACKUP_FILES"
+        else
+          echo "::set-output name=found::false"
+          echo "No backup files found."
+        fi
+
+    - name: Check for test output files in source
+      id: check_test_outputs
+      run: |
+        TEST_OUTPUTS=$(find . -not -path "*/tests/test_data/*" -not -path "*/docs/images/*" -name "*.png" -o -name "test_*.mp3" -o -name "test_*.wav")
+        if [ -n "$TEST_OUTPUTS" ]; then
+          echo "::set-output name=found::true"
+          echo "Test output files found outside of test data directory:"
+          echo "$TEST_OUTPUTS"
+        else
+          echo "::set-output name=found::false"
+          echo "No test output files found in source."
+        fi
+
+    - name: Check for large media files
+      id: check_media_files
+      run: |
+        MEDIA_FILES=$(find . -not -path "*/tests/test_data/*" -name "*.mp3" -o -name "*.wav" -o -name "*.mid" -o -name "*.midi")
+        if [ -n "$MEDIA_FILES" ]; then
+          echo "::set-output name=found::true"
+          echo "Large media files found outside of test data:"
+          echo "$MEDIA_FILES"
+        else
+          echo "::set-output name=found::false"
+          echo "No large media files found outside of test data."
+        fi
+
+    - name: Cleanup summary
+      run: |
+        echo "================ CLEANUP SUMMARY ================"
+        if [ "${{ steps.check_pycache.outputs.found }}" == "true" ] || \
+           [ "${{ steps.check_system_files.outputs.found }}" == "true" ] || \
+           [ "${{ steps.check_editor_files.outputs.found }}" == "true" ] || \
+           [ "${{ steps.check_backup_files.outputs.found }}" == "true" ] || \
+           [ "${{ steps.check_test_outputs.outputs.found }}" == "true" ] || \
+           [ "${{ steps.check_media_files.outputs.found }}" == "true" ]; then
+          echo "⚠️ Unnecessary files were found in the repository."
+          echo ""
+          echo "Please clean up these files before committing by running:"
+          echo ""
+          echo "  # Clean Python cache files"
+          echo "  find . -name \"__pycache__\" -type d -exec rm -rf {} + 2>/dev/null || true"
+          echo "  find . -name \"*.pyc\" -delete"
+          echo ""
+          echo "  # Clean system files"
+          echo "  find . -name \".DS_Store\" -delete"
+          echo "  find . -name \"._.DS_Store\" -delete"
+          echo "  find . -name \"Thumbs.db\" -delete"
+          echo ""
+          echo "  # Clean temporary files"
+          echo "  find . -name \"*~\" -o -name \"*.swp\" -o -name \"*.swo\" -o -name \".*.sw*\" -delete"
+          echo ""
+          echo "  # Clean backup files"
+          echo "  find . -name \"*.bak\" -delete"
+          echo ""
+          echo "Or add these patterns to your .gitignore file."
+          exit 1
+        else
+          echo "✅ No unnecessary files were found in the repository."
+        fi 
