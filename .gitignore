@@ -82,3 +82,5 @@ tmp/
 !examples/*.musicxml
 !examples/*.xml
 !examples/*.pdf
+
+/pretrained_models/*

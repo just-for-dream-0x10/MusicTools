@@ -53,12 +53,3 @@ def musicxml_to_midi(musicxml_file, output_midi=None):
         return None
 
 
-# if __name__ == "__main__":
-#     import argparse
-    
-#     parser = argparse.ArgumentParser(description='Convert MusicXML to MIDI')
-#     parser.add_argument('musicxml_file', help='Path to input MusicXML file')
-#     parser.add_argument('-o', '--output', help='Path to output MIDI file')
-    
-#     args = parser.parse_args()
-#     musicxml_to_midi(args.musicxml_file, args.output) 

@@ -285,13 +285,3 @@ def visualize_audio(audio_file, output_file=None):
         traceback.print_exc()
         return None
 
-
-# if __name__ == "__main__":
-#     import argparse
-    
-#     parser = argparse.ArgumentParser(description='Advanced Audio Visualization')
-#     parser.add_argument('audio_file', help='Path to input audio file')
-#     parser.add_argument('-o', '--output', help='Path to output image file')
-    
-#     args = parser.parse_args()
-#     visualize_audio(args.audio_file, args.output) 

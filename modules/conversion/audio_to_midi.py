@@ -82,12 +82,3 @@ def audio_to_midi(audio_file, output_midi=None):
         return None
 
 
-# if __name__ == "__main__":
-#     import argparse
-    
-#     parser = argparse.ArgumentParser(description='Convert audio to MIDI')
-#     parser.add_argument('audio_file', help='Path to input audio file')
-#     parser.add_argument('-o', '--output', help='Path to output MIDI file')
-    
-#     args = parser.parse_args()
-#     audio_to_midi(args.audio_file, args.output) 

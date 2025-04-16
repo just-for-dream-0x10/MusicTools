@@ -133,24 +133,3 @@ def restore_audio(input_file, output_file=None, settings=None):
         return None
 
 
-# if __name__ == "__main__":
-#     import argparse
-    
-#     parser = argparse.ArgumentParser(description='Audio Restoration and Enhancement')
-#     parser.add_argument('input_file', help='Path to input audio file')
-#     parser.add_argument('-o', '--output', help='Path to output audio file')
-#     parser.add_argument('--noise-reduction', type=float, default=0.2, help='Noise reduction strength (0.0-1.0)')
-#     parser.add_argument('--eq-low', type=float, default=1.2, help='Low frequency gain (0.0-2.0)')
-#     parser.add_argument('--eq-mid', type=float, default=1.0, help='Mid frequency gain (0.0-2.0)')
-#     parser.add_argument('--eq-high', type=float, default=1.1, help='High frequency gain (0.0-2.0)')
-    
-#     args = parser.parse_args()
-    
-#     settings = {
-#         'noise_reduction': args.noise_reduction,
-#         'eq_low': args.eq_low,
-#         'eq_mid': args.eq_mid,
-#         'eq_high': args.eq_high
-#     }
-    
-#     restore_audio(args.input_file, args.output, settings)

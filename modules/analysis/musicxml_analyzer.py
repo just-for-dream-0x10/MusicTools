@@ -192,27 +192,3 @@ def change_instrument(input_file, instrument_name, output_file=None):
         return None
 
 
-# if __name__ == "__main__":
-#     import argparse
-    
-#     parser = argparse.ArgumentParser(description='MusicXML Analysis and Processing')
-#     subparsers = parser.add_subparsers(dest='command', help='Commands')
-    
-#     # Analyze command
-#     analyze_parser = subparsers.add_parser('analyze', help='Analyze MusicXML file')
-#     analyze_parser.add_argument('input_file', help='Path to input MusicXML file')
-    
-#     # Change instrument command
-#     change_parser = subparsers.add_parser('change-instrument', help='Change instrument in MusicXML file')
-#     change_parser.add_argument('input_file', help='Path to input file')
-#     change_parser.add_argument('instrument', help='New instrument name')
-#     change_parser.add_argument('-o', '--output', help='Path to output file')
-    
-#     args = parser.parse_args()
-    
-#     if args.command == 'analyze':
-#         analyze_musicxml(args.input_file)
-#     elif args.command == 'change-instrument':
-#         change_instrument(args.input_file, args.instrument, args.output)
-#     else:
-#         parser.print_help() 

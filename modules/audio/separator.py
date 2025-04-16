@@ -77,12 +77,3 @@ def separate_audio(input_file, output_dir=None):
         return None
 
 
-# if __name__ == "__main__":
-#     import argparse
-    
-#     parser = argparse.ArgumentParser(description='Audio Separation')
-#     parser.add_argument('input_file', help='Path to input audio file')
-#     parser.add_argument('-o', '--output-dir', help='Output directory')
-    
-#     args = parser.parse_args()
-#     separate_audio(args.input_file, args.output_dir) 

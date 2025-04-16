@@ -61,14 +61,3 @@ def convert_audio_format(input_file, output_format=None, output_file=None):
         return None
 
 
-# if __name__ == "__main__":
-#     import argparse
-    
-#     parser = argparse.ArgumentParser(description='Convert audio file format')
-#     parser.add_argument('input_file', help='Path to input audio file')
-#     parser.add_argument('-f', '--format', choices=['wav', 'mp3', 'ogg', 'flac'], 
-#                       help='Output format (wav, mp3, ogg, flac)')
-#     parser.add_argument('-o', '--output', help='Path to output file')
-    
-#     args = parser.parse_args()
-#     convert_audio_format(args.input_file, args.format, args.output) 
