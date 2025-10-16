@@ -83,6 +83,6 @@ tmp/
 !examples/*.xml
 !examples/*.pdf
 
-/pretrained_models/*
+/pretrained_models/
 
 /aim/
