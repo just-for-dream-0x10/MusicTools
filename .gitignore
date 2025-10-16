@@ -84,3 +84,5 @@ tmp/
 !examples/*.pdf
 
 /pretrained_models/*
+
+/aim/

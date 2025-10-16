@@ -1,0 +1,52 @@
+# MusicAITools Configuration File
+# This file contains default settings for all modules
+
+# Audio restoration settings
+audio_restoration:
+  noise_reduction: 0.2
+  eq_low: 1.2
+  eq_mid: 1.0
+  eq_high: 1.1
+  enable_spectral_gating: true
+  enable_dynamic_range_compression: false
+  compression_ratio: 2.0
+
+# Audio separation settings
+audio_separation:
+  model_name: "htdemucs"
+  device: "auto"
+  split_tracks: true
+  overlap: 0.25
+  shifts: 1
+  segment_length: null
+
+# Visualization settings
+visualization:
+  dpi: 300
+  figure_size: [15, 10]
+  color_scheme: "viridis"
+  save_format: "png"
+  show_plots: false
+  n_fft: 2048
+  hop_length: 512
+  n_mels: 128
+
+# Conversion settings
+conversion:
+  default_sample_rate: 22050
+  default_bit_depth: 16
+  enable_resampling: true
+  conversion_quality: "high"
+  preserve_metadata: true
+  normalize_audio: false
+
+# System settings
+system:
+  output_dir: "output"
+  temp_dir: "temp"
+  cache_enabled: true
+  max_cache_size_mb: 1000
+  parallel_processing: true
+  max_workers: 4
+  memory_limit_mb: null
+  log_level: "INFO"
