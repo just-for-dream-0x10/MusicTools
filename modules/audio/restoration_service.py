@@ -217,6 +217,7 @@ class AudioRestorationService(BaseService):
             return audio_data, sample_rate
             
         except Exception as e:
+            self.logger.error(f"Audio loading failed for {file_path}: {e}")
             raise AudioProcessingError(f"Failed to load audio file {file_path}: {e}")
     
     def _save_audio(self, 

@@ -13,7 +13,10 @@ from .exceptions import (
     MusicAIToolsException,
     AudioProcessingError,
     FileNotFoundError,
-    InvalidFormatError
+    InvalidFormatError,
+    ValidationError,
+    ConfigurationError,
+    ModelLoadError
 )
 
 from .logger import MusicAILogger, get_logger, setup_logging
@@ -46,6 +49,9 @@ __all__ = [
     'AudioProcessingError', 
     'FileNotFoundError',
     'InvalidFormatError',
+    'ValidationError',
+    'ConfigurationError',
+    'ModelLoadError',
     
     # Logging
     'MusicAILogger',
